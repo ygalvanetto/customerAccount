@@ -21,6 +21,13 @@ public class Account {
             this.name = name;
         }
         
+        public Account(Customer customer, String number, String name, double rate) {
+            this.customer = customer;
+            this.number = number;
+            this.name = name;
+            this.rate = rate;
+        }
+        
 	/**
 	 * 
 	 * @param amount
@@ -37,6 +44,8 @@ public class Account {
 	public void debit(double amount) {
             if(this.balance - amount < 0)
                 System.out.println("Error");
+            else
+                this.balance -= amount;
 	}
 
 	/**
@@ -52,6 +61,10 @@ public class Account {
 
     public void setBalance(double balance) {
         this.balance = balance;
+    }
+    
+    public double getBalance(){
+        return balance;
     }
 
     public void setRate(double rate) {

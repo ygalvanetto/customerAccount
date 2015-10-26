@@ -5,6 +5,7 @@
  */
 package odi_serie3;
 
+import business.Bank;
 import business.Customer;
 
 /**
@@ -17,12 +18,23 @@ public class ODI_serie3 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Customer c1 = new Customer(1,"francois" ,"gatherat");
         
-        c1.addAccount("123", "epargne", 0.1);
-        c1.getAccountByNumber("123").credit(100);
-        c1.getAccountByNumber("123").debit(150);
+        Bank bank = new Bank(1, "BCJ");
+        bank.addCustomer(1, "francois", "gatherat");
+        bank.addCustomer(2,"yannick", "galvanetto");
         
+        bank.addAccount("123", "epargne", 0.1, bank.getCustomerByNumber(0));
+        bank.addAccount("456", "jeune", 0.2, bank.getCustomerByNumber(1));
+        bank.addAccount("789", "jeune", 0.2, bank.getCustomerByNumber(1));
+        
+        
+        bank.getAccountByNumber("456").credit(150);
+        bank.getAccountByNumber("456").debit(100);
+        bank.getAccountByNumber("456").debit(100);
+        bank.getAccountByNumber("123").credit(200);
+        
+        System.out.println(bank.getAccountByNumber("456").getBalance());
+        System.out.println(bank.getAccountByNumber("123").getCustomer().getLastname());
     }
     
 }

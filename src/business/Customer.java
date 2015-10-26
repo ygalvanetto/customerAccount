@@ -43,5 +43,9 @@ public class Customer {
         compte.setRate(rate);
         accounts.add(compte);
     }
+    
+    public String getLastname() {
+        return lastName;
+    }
 
 }
